@@ -1,0 +1,34 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>    
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <IsPackable>true</IsPackable>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <PackageId>tbd</PackageId>
+    <VersionPrefix>0.1.0</VersionPrefix>
+    <Title>tbd</Title>
+    <Authors>Verner Fortelius</Authors>
+    <Description>Wordpiece tokenizer for using eg onnx models with ML.Net</Description>
+    <Copyright>Copyright 2024 Verner Fortelius</Copyright>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/vforteli/WordPieceTokenizer</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/vforteli/WordPieceTokenizer</RepositoryUrl>
+    <PackageLicense>https://github.com/vforteli/WordPieceTokenizer/blob/main/LICENSE.md</PackageLicense>
+    <PackageReleaseNotes>tbd</PackageReleaseNotes>
+    <PackageTags>llm;bert;dotnet;.net;c#;ml.net;wordpiece;tokenizer</PackageTags>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="../README.md" Pack="true" PackagePath="/" />
+  </ItemGroup>
+  
+</Project>
