@@ -36,16 +36,11 @@ public class WordPieceTokenizer
         _suffixTokensToIds = _idsToTokens.Select((t, i) => (t, i)).Where(o => o.t.StartsWith("##")).Select(o => new KeyValuePair<string, int>(o.t[2..], o.i)).ToFrozenDictionary();
     }
 
-
-    public IReadOnlyDictionary<string, int> GetVocab() => _prefixTokensToIds;
-
-    public int GetVocabSize() => _idsToTokens.Length;
-
     public string? IdToToken(int id) => _idsToTokens[id];
 
     public int? TokenToId(string token) =>
         token.StartsWith("##")
-            ? _suffixTokensToIds[token]
+            ? _suffixTokensToIds[token[2..]]
             : _prefixTokensToIds[token];
 
 

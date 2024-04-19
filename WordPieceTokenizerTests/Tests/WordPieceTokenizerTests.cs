@@ -6,13 +6,29 @@ namespace NerAnonymizerTests;
 
 public class WordPieceTokenizerTests
 {
-    private WordPieceTokenizer _tokenizer = new WordPieceTokenizer(VocabStrings.Vocab);
+    private readonly WordPieceTokenizer _tokenizer = new WordPieceTokenizer(VocabStrings.Vocab);
 
-    [OneTimeSetUp]
-    public async Task Setup()
+    [Test]
+    public async Task TokenToId()
     {
+        Assert.Multiple(() =>
+        {
+            Assert.That(_tokenizer.TokenToId("ta"), Is.EqualTo(153));
+            Assert.That(_tokenizer.TokenToId("##mm"), Is.EqualTo(169));
+            Assert.That(() => _tokenizer.TokenToId("doesntexist"), Throws.InstanceOf<KeyNotFoundException>());
+        });
     }
 
+    [Test]
+    public async Task IdToToken()
+    {
+        Assert.Multiple(() =>
+        {
+            Assert.That(_tokenizer.IdToToken(153), Is.EqualTo("ta"));
+            Assert.That(_tokenizer.IdToToken(169), Is.EqualTo("##mm"));
+            Assert.That(() => _tokenizer.IdToToken(int.MaxValue), Throws.InstanceOf<IndexOutOfRangeException>());
+        });
+    }
 
     [Test]
     public async Task TokenizeWord_wtf()
