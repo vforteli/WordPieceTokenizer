@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WordPieceTokenizer", "WordP
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WordPieceTokenizerTests", "WordPieceTokenizerTests\WordPieceTokenizerTests.csproj", "{BAB99199-2E2A-497E-BE3F-440D90359A0F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleTester", "ConsoleTester\ConsoleTester.csproj", "{821678A1-5F06-4622-AB13-E844E462DE6D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{BAB99199-2E2A-497E-BE3F-440D90359A0F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BAB99199-2E2A-497E-BE3F-440D90359A0F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BAB99199-2E2A-497E-BE3F-440D90359A0F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{821678A1-5F06-4622-AB13-E844E462DE6D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{821678A1-5F06-4622-AB13-E844E462DE6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{821678A1-5F06-4622-AB13-E844E462DE6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{821678A1-5F06-4622-AB13-E844E462DE6D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
