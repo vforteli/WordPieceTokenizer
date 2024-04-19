@@ -1,6 +1,4 @@
-using NerAnonymizer;
-
-namespace NerAnonymizerTests;
+namespace vforteli.WordPieceTokenizer;
 
 public class Tests
 {

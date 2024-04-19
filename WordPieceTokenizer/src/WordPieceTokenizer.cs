@@ -1,21 +1,9 @@
 using System.Collections.Frozen;
 
-namespace NerAnonymizer;
+namespace vforteli.WordPieceTokenizer;
 
 /// <summary>
-/// Raw token, this is the output from the model
-/// </summary>
-public record struct Token(long Id, int Start, int End);
-
-
-/// <summary>
-/// Internal raw prediction with only score and index
-/// </summary>
-public record Prediction(string EntityGroup, double Score, int Start, int End);
-
-
-/// <summary>
-/// Word piece model for tokenizing using existing vocabularies
+/// WordPieceTokenizer
 /// </summary>
 public class WordPieceTokenizer
 {
@@ -26,9 +14,8 @@ public class WordPieceTokenizer
 
 
     /// <summary>
-    /// Create a new WordPiece model with a vocabulary
-    /// </summary>
-    /// <param name="vocabulary"></param>
+    /// Create a new WordPieceTokenizer with a vocabulary    
+    /// </summary>    
     public WordPieceTokenizer(string vocabulary)
     {
         _idsToTokens = vocabulary.Split(["\n", "\r\n"], StringSplitOptions.None);

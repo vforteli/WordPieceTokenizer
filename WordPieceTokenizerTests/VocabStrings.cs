@@ -1,4 +1,4 @@
-namespace NerAnonymizerTests;
+namespace vforteli.WordPieceTokenizer;
 
 public class VocabStrings
 {

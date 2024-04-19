@@ -1,8 +1,6 @@
 ﻿using System.Text.RegularExpressions;
 
-namespace NerAnonymizer;
-
-public record Word(string Text, int Start, int End);
+namespace vforteli.WordPieceTokenizer;
 
 public class PreTokenizer
 {
