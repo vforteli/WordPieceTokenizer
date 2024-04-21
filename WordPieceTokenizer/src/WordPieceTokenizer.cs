@@ -41,7 +41,7 @@ public class WordPieceTokenizer
     /// <summary>
     /// Tokenize text into word pieces
     /// </summary>
-    public IReadOnlyList<Token> Tokenize(ReadOnlySpan<char> text) => new PreTokenizer().Split(text).SelectMany(TokenizeWord).ToList();
+    public IEnumerable<Token> Tokenize(ReadOnlySpan<char> text) => new PreTokenizer().Split(text).SelectMany(TokenizeWord);
 
 
     /// <summary>

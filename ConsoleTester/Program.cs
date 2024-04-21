@@ -10,7 +10,7 @@ var count = 10;
 
 for (int i = 0; i < count; i++)
 {
-    var foo = tokenizer.Tokenize(text);
+    _ = tokenizer.Tokenize(text).ToList();
     Console.WriteLine(i);
 }
 
