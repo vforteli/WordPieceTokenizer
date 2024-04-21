@@ -55,6 +55,43 @@ public class WordPieceTokenizerTests
     }
 
     [Test]
+    public async Task TokenizeWord_sentence()
+    {
+        var text = "onko pallo vai kalakukko";
+
+        var tokens = _tokenizer.Tokenize(text).ToList();
+
+        Assert.Multiple(() =>
+        {
+            Assert.That(tokens, Has.Count.EqualTo(6));
+
+            Assert.That(tokens[0].Id, Is.EqualTo(1435));
+            Assert.That(tokens[0].Start, Is.EqualTo(0));
+            Assert.That(tokens[0].End, Is.EqualTo(4));
+
+            Assert.That(tokens[1].Id, Is.EqualTo(12371));
+            Assert.That(tokens[1].Start, Is.EqualTo(5));
+            Assert.That(tokens[1].End, Is.EqualTo(10));
+
+            Assert.That(tokens[2].Id, Is.EqualTo(1317));
+            Assert.That(tokens[2].Start, Is.EqualTo(11));
+            Assert.That(tokens[2].End, Is.EqualTo(14));
+
+            Assert.That(tokens[3].Id, Is.EqualTo(7445));
+            Assert.That(tokens[3].Start, Is.EqualTo(15));
+            Assert.That(tokens[3].End, Is.EqualTo(19));
+
+            Assert.That(tokens[4].Id, Is.EqualTo(225));
+            Assert.That(tokens[4].Start, Is.EqualTo(19));
+            Assert.That(tokens[4].End, Is.EqualTo(21));
+
+            Assert.That(tokens[5].Id, Is.EqualTo(760));
+            Assert.That(tokens[5].Start, Is.EqualTo(21));
+            Assert.That(tokens[5].End, Is.EqualTo(24));
+        });
+    }
+
+    [Test]
     public async Task TokenizeWord_wtf_with_offset()
     {
         var text = "wtf";
