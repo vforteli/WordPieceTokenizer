@@ -9,18 +9,25 @@ public class WordPieceTokenizer
 {
     private readonly FrozenDictionary<string, int> _prefixTokensToIds;
     private readonly FrozenDictionary<string, int> _suffixTokensToIds;
-
     private readonly string[] _idsToTokens;
-
+    private readonly int _unkTokenId;
 
     /// <summary>
-    /// Create a new WordPieceTokenizer with a vocabulary    
+    /// Create a new WordPieceTokenizer with a vocabulary and specified UNK token
     /// </summary>    
-    public WordPieceTokenizer(string vocabulary)
+    public WordPieceTokenizer(string vocabulary, string unkToken)
     {
         _idsToTokens = vocabulary.Split(["\n", "\r\n"], StringSplitOptions.None);
         _prefixTokensToIds = _idsToTokens.Select((t, i) => (t, i)).Where(o => !o.t.StartsWith("##")).Select(o => new KeyValuePair<string, int>(o.t, o.i)).ToFrozenDictionary();
         _suffixTokensToIds = _idsToTokens.Select((t, i) => (t, i)).Where(o => o.t.StartsWith("##")).Select(o => new KeyValuePair<string, int>(o.t[2..], o.i)).ToFrozenDictionary();
+        _unkTokenId = _prefixTokensToIds[unkToken];
+    }
+
+    /// <summary>
+    /// Create a new WordPieceTokenizer with a vocabulary default [UNK] token
+    /// </summary>    
+    public WordPieceTokenizer(string vocabulary) : this(vocabulary, "[UNK]")
+    {
     }
 
     public string? IdToToken(int id) => _idsToTokens[id];
@@ -70,7 +77,7 @@ public class WordPieceTokenizer
         // no matching prefix found, give up
         if (tokens.Count == 0)
         {
-            return [new Token(_prefixTokensToIds["[UNK]"], word.Start, word.End)];
+            return [new Token(_unkTokenId, word.Start, word.End)];
         }
 
         while (index < word.Text.Length)
@@ -90,12 +97,12 @@ public class WordPieceTokenizer
             // if we stumble upon an unknown token in the middle of a word, the whole word becomes unknown
             if (unk)
             {
-                return [new Token(_prefixTokensToIds["[UNK]"], word.Start, word.End)];
+                return [new Token(_unkTokenId, word.Start, word.End)];
             }
         }
 
         return tokens.Count != 0
             ? tokens
-            : [new Token(_prefixTokensToIds["[UNK]"], word.Start, word.End)];
+            : [new Token(_unkTokenId, word.Start, word.End)];
     }
 }
