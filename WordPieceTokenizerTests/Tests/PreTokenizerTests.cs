@@ -19,6 +19,22 @@ public class Tests
     }
 
     [Test]
+    public void TestPreTokenizer_Split_Scandinavian()
+    {
+        var text = "löl. wüt";
+
+        var tokens = new PreTokenizer().Split(text).ToList();
+
+        Assert.Multiple(() =>
+        {
+            Assert.That(tokens, Has.Count.EqualTo(3));
+            Assert.That(tokens[0].Text, Is.EqualTo("löl"));
+            Assert.That(tokens[1].Text, Is.EqualTo("."));
+            Assert.That(tokens[2].Text, Is.EqualTo("wüt"));
+        });
+    }
+
+    [Test]
     public void TestPreTokenizer_Split_dots()
     {
         var text = ". .";
