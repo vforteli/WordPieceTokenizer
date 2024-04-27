@@ -20,7 +20,7 @@ public class PreTokenizer
                     yield return new Word(text[currentWordStartIndex..i], currentWordStartIndex, i);
                 }
 
-                yield return new Word(text[i..(i + 1)].ToString(), i, i + 1);
+                yield return new Word(text[i].ToString(), i, i + 1);
                 insideWord = false;
             }
             else if (char.IsWhiteSpace(c))

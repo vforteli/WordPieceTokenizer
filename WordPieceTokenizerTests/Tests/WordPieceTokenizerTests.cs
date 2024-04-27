@@ -55,6 +55,36 @@ public class WordPieceTokenizerTests
     }
 
     [Test]
+    public async Task TokenizeWord_long()
+    {
+        var text = "wtf kokemuksistaankö wtf";
+
+        var tokens = _tokenizer.Tokenize(text).ToList();
+        var expected = "w, ##t, ##f, kokemuksistaan, ##kö, w, ##t, ##f";
+
+        Assert.Multiple(() =>
+        {
+            Assert.That(tokens, Has.Count.EqualTo(8));
+            Assert.That(string.Join(", ", tokens.Select(o => _tokenizer.IdToToken(o.Id))), Is.EqualTo(expected));
+        });
+    }
+
+    [Test]
+    public async Task TokenizeWord_long_2()
+    {
+        var text = "kokemuksistaan";
+
+        var tokens = _tokenizer.Tokenize(text).ToList();
+        var expected = "kokemuksistaan";
+
+        Assert.Multiple(() =>
+        {
+            Assert.That(tokens, Has.Count.EqualTo(1));
+            Assert.That(string.Join(", ", tokens.Select(o => _tokenizer.IdToToken(o.Id))), Is.EqualTo(expected));
+        });
+    }
+
+    [Test]
     public async Task TokenizeWord_sentence()
     {
         var text = "onko pallo vai kalakukko";

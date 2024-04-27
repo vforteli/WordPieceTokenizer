@@ -18,6 +18,6 @@ public class BenchmarkTokenizer
     [Benchmark]
     public void TokenizeLong()
     {
-        _ = tokenizer!.Tokenize(world192Text!).ToList();
+        _ = tokenizer!.Tokenize(world192Text!).Take(512).ToList();
     }
 }
