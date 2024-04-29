@@ -7,10 +7,11 @@
     <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <IsPackable>true</IsPackable>
+    <IsAotCompatible>true</IsAotCompatible>
   </PropertyGroup>
 
   <PropertyGroup>
-    <PackageId>tbd</PackageId>
+    <PackageId>vforteli.WordPieceTokenizer</PackageId>
     <VersionPrefix>0.1.0</VersionPrefix>
     <Title>tbd</Title>
     <Authors>Verner Fortelius</Authors>
