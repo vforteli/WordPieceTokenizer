@@ -45,26 +45,26 @@ jobs:
         with:
           name: nugetpackage
           path: ./**/*.nupkg
-#   Push:
-#     needs: Build
-#     if: startsWith(github.ref, 'refs/tags/v')
-#     runs-on: ubuntu-latest
+  Push:
+    needs: Build
+    if: startsWith(github.ref, 'refs/tags/v')
+    runs-on: ubuntu-latest
 
-#     steps:
-#       - name: Setup .NET
-#         uses: actions/setup-dotnet@v4
-#         with:
-#           dotnet-version: 8.0.x
+    steps:
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
 
-#       - name: Download artifacts
-#         uses: actions/download-artifact@v4
+      - name: Download artifacts
+        uses: actions/download-artifact@v4
 
-#       - name: Pack release
-#         if: "startsWith(github.ref, 'refs/tags/v')"
-#         run: |
-#           TAG=${{github.ref_name}}
-#           VERSION=${TAG#v}
-#           dotnet nuget push ./nugetpackage/FuzzySearchNet/bin/Release/FuzzySearch.Net.${VERSION}.nupkg --source https://api.nuget.org/v3/index.json --api-key ${NUGET_PAT}
+      - name: Pack release
+        if: "startsWith(github.ref, 'refs/tags/v')"
+        run: |
+          TAG=${{github.ref_name}}
+          VERSION=${TAG#v}
+          dotnet nuget push ./nugetpackage/WordPieceTokenizer/bin/Release/WordPieceTokenizer.${VERSION}.nupkg --source https://api.nuget.org/v3/index.json --api-key ${NUGET_PAT}
 
-#         env:
-#           NUGET_PAT: ${{ secrets.NUGET_PAT }}
+        env:
+          NUGET_PAT: ${{ secrets.NUGET_PAT }}
