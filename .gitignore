@@ -229,3 +229,4 @@ _Pvt_Extensions
 SearchIndexerTest/appsettings.json
 .vscode/
 finbert-ner-onnx
+/.idea/

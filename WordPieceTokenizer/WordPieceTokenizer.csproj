@@ -11,7 +11,7 @@
 
   <PropertyGroup>
     <PackageId>vforteli.WordPieceTokenizer</PackageId>
-    <VersionPrefix>0.1.0</VersionPrefix>
+    <VersionPrefix>0.1.1</VersionPrefix>
     <Title>tbd</Title>
     <Authors>Verner Fortelius</Authors>
     <Description>Wordpiece tokenizer for using eg onnx models with ML.Net</Description>

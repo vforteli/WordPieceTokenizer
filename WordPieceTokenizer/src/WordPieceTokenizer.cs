@@ -23,8 +23,10 @@ public class WordPieceTokenizer
     public WordPieceTokenizer(string vocabulary, string unkToken)
     {
         _idsToTokens = vocabulary.Split(["\n", "\r\n"], StringSplitOptions.None);
-        _prefixTokensToIds = _idsToTokens.Select((t, i) => (t, i)).Where(o => !o.t.StartsWith("##")).Select(o => new KeyValuePair<string, int>(o.t, o.i)).ToFrozenDictionary();
-        _suffixTokensToIds = _idsToTokens.Select((t, i) => (t, i)).Where(o => o.t.StartsWith("##")).Select(o => new KeyValuePair<string, int>(o.t[2..], o.i)).ToFrozenDictionary();
+        _prefixTokensToIds = _idsToTokens.Select((t, i) => (t, i)).Where(o => !o.t.StartsWith("##"))
+            .Select(o => new KeyValuePair<string, int>(o.t, o.i)).ToFrozenDictionary();
+        _suffixTokensToIds = _idsToTokens.Select((t, i) => (t, i)).Where(o => o.t.StartsWith("##"))
+            .Select(o => new KeyValuePair<string, int>(o.t[2..], o.i)).ToFrozenDictionary();
         _unkTokenId = _prefixTokensToIds[unkToken];
 
         _longestPrefixLength = _prefixTokensToIds.Max(o => o.Key.Length);
@@ -35,7 +37,9 @@ public class WordPieceTokenizer
     /// <summary>
     /// Create a new WordPieceTokenizer with a vocabulary default [UNK] token
     /// </summary>    
-    public WordPieceTokenizer(string vocabulary) : this(vocabulary, "[UNK]") { }
+    public WordPieceTokenizer(string vocabulary) : this(vocabulary, "[UNK]")
+    {
+    }
 
     public string? IdToToken(int id) => _idsToTokens[id];
 
@@ -67,7 +71,8 @@ public class WordPieceTokenizer
             return [new Token(id, word.Start, word.End)];
         }
 
-        var tokens = new List<Token>();
+        // 10 is just a basic heuristic here... most words will probably fit and wont allocate unnecessary or need to reallocate more
+        var tokens = new List<Token>(10);
         var index = 0;
 
         for (int i = Math.Min(word.Text.Length, _longestPrefixLength - 1); i > 0; i--)
