@@ -17,10 +17,10 @@ public class PreTokenizer
             {
                 if (insideWord)
                 {
-                    yield return new Word(text[currentWordStartIndex..i], currentWordStartIndex, i);
+                    yield return new Word(currentWordStartIndex, i);
                 }
 
-                yield return new Word(text[i].ToString(), i, i + 1);
+                yield return new Word(i, i + 1);
                 insideWord = false;
             }
             else if (char.IsWhiteSpace(c))
@@ -28,7 +28,7 @@ public class PreTokenizer
                 if (insideWord)
                 {
                     insideWord = false;
-                    yield return new Word(text[currentWordStartIndex..i], currentWordStartIndex, i);
+                    yield return new Word(currentWordStartIndex, i);
                 }
             }
             else
@@ -46,7 +46,7 @@ public class PreTokenizer
 
         if (insideWord)
         {
-            yield return new Word(text[currentWordStartIndex..text.Length], currentWordStartIndex, text.Length);
+            yield return new Word(currentWordStartIndex, text.Length);
         }
     }
 }

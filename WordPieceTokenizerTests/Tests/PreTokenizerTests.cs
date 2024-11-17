@@ -2,6 +2,8 @@ namespace vforteli.WordPieceTokenizer;
 
 public class Tests
 {
+    private string GetWordFromWord(string text, Word word) => text[word.Start..word.End];
+
     [Test]
     public void TestPreTokenizer_Split()
     {
@@ -12,9 +14,9 @@ public class Tests
         Assert.Multiple(() =>
         {
             Assert.That(tokens, Has.Count.EqualTo(3));
-            Assert.That(tokens[0].Text, Is.EqualTo("lol"));
-            Assert.That(tokens[1].Text, Is.EqualTo("."));
-            Assert.That(tokens[2].Text, Is.EqualTo("wat"));
+            Assert.That(GetWordFromWord(text, tokens[0]), Is.EqualTo("lol"));
+            Assert.That(GetWordFromWord(text, tokens[1]), Is.EqualTo("."));
+            Assert.That(GetWordFromWord(text, tokens[2]), Is.EqualTo("wat"));
         });
     }
 
@@ -28,9 +30,9 @@ public class Tests
         Assert.Multiple(() =>
         {
             Assert.That(tokens, Has.Count.EqualTo(3));
-            Assert.That(tokens[0].Text, Is.EqualTo("löl"));
-            Assert.That(tokens[1].Text, Is.EqualTo("."));
-            Assert.That(tokens[2].Text, Is.EqualTo("wüt"));
+            Assert.That(GetWordFromWord(text, tokens[0]), Is.EqualTo("löl"));
+            Assert.That(GetWordFromWord(text, tokens[1]), Is.EqualTo("."));
+            Assert.That(GetWordFromWord(text, tokens[2]), Is.EqualTo("wüt"));
         });
     }
 
@@ -44,8 +46,8 @@ public class Tests
         Assert.Multiple(() =>
         {
             Assert.That(tokens, Has.Count.EqualTo(2));
-            Assert.That(tokens[0].Text, Is.EqualTo("."));
-            Assert.That(tokens[1].Text, Is.EqualTo("."));
+            Assert.That(GetWordFromWord(text, tokens[0]), Is.EqualTo("."));
+            Assert.That(GetWordFromWord(text, tokens[1]), Is.EqualTo("."));
         });
     }
 
@@ -59,8 +61,8 @@ public class Tests
         Assert.Multiple(() =>
         {
             Assert.That(tokens, Has.Count.EqualTo(2));
-            Assert.That(tokens[0].Text, Is.EqualTo("bla"));
-            Assert.That(tokens[1].Text, Is.EqualTo("."));
+            Assert.That(GetWordFromWord(text, tokens[0]), Is.EqualTo("bla"));
+            Assert.That(GetWordFromWord(text, tokens[1]), Is.EqualTo("."));
         });
     }
 
@@ -74,9 +76,9 @@ public class Tests
         Assert.Multiple(() =>
         {
             Assert.That(tokens, Has.Count.EqualTo(3));
-            Assert.That(tokens[0].Text, Is.EqualTo("("));
-            Assert.That(tokens[1].Text, Is.EqualTo("bla"));
-            Assert.That(tokens[2].Text, Is.EqualTo(")"));
+            Assert.That(GetWordFromWord(text, tokens[0]), Is.EqualTo("("));
+            Assert.That(GetWordFromWord(text, tokens[1]), Is.EqualTo("bla"));
+            Assert.That(GetWordFromWord(text, tokens[2]), Is.EqualTo(")"));
         });
     }
 }
